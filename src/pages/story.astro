@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatBar from '../components/StatBar.astro';
+
+const values = [
+  { t: 'Meet you where you are', d: 'Every body is different. Joanie scales every movement so you\'re challenged, never overwhelmed.' },
+  { t: 'Strength for real life', d: 'The goal isn\'t just fitness — it\'s carrying groceries, playing with grandkids, and moving freely.' },
+  { t: 'Joy in the work', d: 'Class should be the best hour of your day. Expect energy, laughter and a real sense of community.' },
+];
+---
+
+<BaseLayout title="Joanie's Story">
+  <Hero
+    title="Joanie's story"
+    subtitle="Four decades of teaching. One simple mission: help you discover how much your body is still capable of."
+    image="/images/jf-photo-4.jpg"
+    compact={true}
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-14 items-center">
+      <div class="lg:col-span-2 fade-in-up">
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+          <img src="/images/jf-photo-1.jpg" alt="Joanie demonstrating strong, controlled movement" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="lg:col-span-3 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Teaching since 1982</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-6">Passion you can feel from the first class</h2>
+        <div class="space-y-5 text-lg text-dark-light/85 leading-relaxed">
+          <p>
+            Joanie has been teaching fitness since 1982. Over four decades, she has coached
+            thousands of people — and along the way, she's learned what truly matters: helping
+            people feel strong, capable and confident in their own bodies.
+          </p>
+          <p>
+            Now based in The Villages, Florida, Joanie focuses on what she loves most — leading
+            energetic, low-impact classes for active seniors. Her deep knowledge of fitness and her
+            genuine warmth make every session feel personal, no matter the class size.
+          </p>
+          <p>
+            Her philosophy is simple: movement is a gift, and it's never too late to get stronger.
+            She guides you through this phase of life with an emphasis on strength, mobility and
+            durability — so you can keep doing all the things you love.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <StatBar />
+
+  <section class="py-20 md:py-28 bg-light-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">What Joanie believes</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3">How she coaches</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-7">
+        {values.map(v => (
+          <div class="fade-in-up bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 class="text-xl text-dark mb-3">{v.t}</h3>
+            <p class="text-[15px] text-dark-light/80 leading-relaxed">{v.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden hero-grain py-20">
+    <div class="absolute inset-0">
+      <img src="/images/jf-photo-3.jpg" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-dark/65"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl text-white mb-5">Come move with Joanie</h2>
+      <p class="text-lg text-white/85 mb-9">The best way to understand the JoanieFit difference is to experience it. Your first class is free.</p>
+      <a href="/contact" class="btn-lift inline-flex items-center justify-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Claim Your Free Class</a>
+    </div>
+  </section>
+</BaseLayout>

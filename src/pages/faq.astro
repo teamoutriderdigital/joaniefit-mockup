@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const faqs = [
+  { q: 'When is your free class?', a: 'Joanie offers a complimentary class at Sawgrass for newcomers. Times vary by season — send a quick message and we\'ll tell you the next available free class and how to join.' },
+  { q: 'How do I sign up for your classes?', a: 'JoanieFit classes are run through The Villages recreation department. You\'ll find them in The Villages calendars and weekly newspapers, and you register and pay through Recreation — about $48 for a 4-class package.' },
+  { q: 'Do you have online classes?', a: 'Yes! Joanie\'s Villages Healthy Living channel on YouTube has follow-along workouts you can do anytime, anywhere — completely free to watch. A full on-demand membership is also on the way.' },
+  { q: 'Are the classes really low impact?', a: 'Absolutely. Every class — including kickboxing — is designed to be joint-friendly and scalable. Joanie offers modifications so you can work at the level that\'s right for you.' },
+  { q: 'I haven\'t exercised in a while. Can I still join?', a: 'Yes, and you\'re exactly who Joanie loves to coach. Classes welcome all levels, and she\'ll meet you where you are. Most students say they wish they\'d started sooner.' },
+  { q: 'What should I bring to class?', a: 'Just water, comfortable workout shoes and clothes you can move in. For some classes light weights are used — Joanie will let you know what to expect.' },
+  { q: 'Where are classes held?', a: 'At recreation centers around The Villages, FL. Specific locations are listed with each class on The Villages recreation calendar.' },
+  { q: 'How do I reach Joanie?', a: 'The easiest way is email — Joanie@JoanieFit.com — or the contact form on this site. She replies to messages quickly, usually within an hour.' },
+];
+---
+
+<BaseLayout title="Frequently Asked Questions">
+  <Hero
+    title="Frequently asked questions"
+    subtitle="Everything you need to know about classes, sign-ups and getting started with JoanieFit."
+    image="/images/jf-photo-1.jpg"
+    compact={true}
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-4">
+        {faqs.map((f, i) => (
+          <details class="fade-in-up group bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden" open={i === 0}>
+            <summary class="flex items-center justify-between cursor-pointer list-none px-7 py-6 text-lg md:text-xl font-bold text-dark hover:text-brand-primary transition-colors">
+              {f.q}
+              <svg class="w-6 h-6 text-brand-primary flex-shrink-0 ml-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-7 pb-7 -mt-1 text-[17px] text-dark-light/85 leading-relaxed">{f.a}</div>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-14 text-center fade-in-up bg-light-bg rounded-2xl p-10">
+        <h2 class="text-2xl text-dark mb-3">Still have a question?</h2>
+        <p class="text-lg text-dark-light/80 mb-7">Joanie is happy to help. Send a message and she'll get right back to you.</p>
+        <a href="/contact" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Ask Joanie</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

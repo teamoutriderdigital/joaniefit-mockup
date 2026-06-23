@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatBar from '../components/StatBar.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const classes = [
+  {
+    title: 'Low Impact Kickboxing',
+    description: 'All the energy and fun of kickboxing — combinations, cardio and core — with joint-friendly movement designed for active bodies.',
+    icon: '<svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
+  },
+  {
+    title: 'Bodysculpt',
+    description: 'Full-body strength using light weights and resistance to build the lean, capable muscle that keeps you strong and independent.',
+    icon: '<svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6v12M18 6v12M3 9h3M18 9h3M6 12h12"/></svg>',
+  },
+  {
+    title: 'Coresculpt',
+    description: 'Targeted core and stability work that protects your back, sharpens your balance and powers everything you do.',
+    icon: '<svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18"/></svg>',
+  },
+  {
+    title: 'Free Sawgrass Class',
+    description: 'New to JoanieFit? Come try a complimentary class at Sawgrass — no commitment, just bring water and a smile.',
+    icon: '<svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>',
+  },
+];
+
+const reasons = [
+  { title: 'Teaching since 1982', text: 'Four decades of real coaching experience. Joanie has guided thousands of bodies safely and effectively.' },
+  { title: 'Built for active seniors', text: 'Every class is designed to build strength, mobility and durability for this stage of life — never one-size-fits-all.' },
+  { title: 'Energy that’s contagious', text: 'Students describe Joanie’s classes as the highlight of their week. You’ll work hard and leave smiling.' },
+  { title: 'Right here in The Villages', text: 'Classes meet at recreation centers around The Villages — convenient, friendly and close to home.' },
+];
+
+const testimonials = [
+  { quote: 'Joanie’s infectious energy makes every class fly by. I leave feeling stronger and happier every single time.', name: 'Amy', role: 'Class member' },
+  { quote: 'Her classes are my vital stress release. I’ve never stuck with a fitness routine like this before.', name: 'Kathryn', role: 'Member' },
+  { quote: 'The challenging combinations keep me motivated. Joanie meets you where you are and pushes you further.', name: 'Taryn', role: 'Longtime student' },
+];
+---
+
+<BaseLayout title="Active Senior Fitness in The Villages, FL">
+  <Hero
+    title="Strength, mobility & durability — for this phase of life."
+    subtitle="Joanie has been teaching fitness since 1982. Join her low-impact classes in The Villages and discover just how much your body is still capable of."
+    image="/images/jf-photo-1.jpg"
+    badges={["The Villages, FL", "Active senior fitness", "Limited class sizes"]}
+    primaryCta={{ label: "See the Class Schedule", href: "/classes" }}
+    secondaryCta={{ label: "Watch on YouTube", href: "/online-classes" }}
+  />
+
+  <StatBar />
+
+  <!-- Intro -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Meet Joanie</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-6">Fitness for life — guided by someone who's done it for 40+ years</h2>
+        <p class="text-lg text-dark-light/85 leading-relaxed mb-5">
+          Joanie's knowledge of fitness and her genuine passion shine through in every class. She
+          helps you realize how much your body is capable of and guides you through this phase of
+          life with confidence and care.
+        </p>
+        <p class="text-lg text-dark-light/85 leading-relaxed mb-8">
+          No intimidation, no pressure — just smart, joyful movement alongside neighbors who
+          become friends. Classes are kept small, so you're never lost in the crowd.
+        </p>
+        <a href="/story" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+          Read Joanie's Story
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+      <div class="fade-in-up">
+        <div class="relative rounded-2xl overflow-hidden shadow-xl">
+          <img src="/images/jf-photo-4.jpg" alt="Joanie leading an energetic group fitness class" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes -->
+  <section class="py-20 md:py-28 bg-light-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">The Classes</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-4">Move strong, feel capable</h2>
+        <p class="text-lg text-dark-light/80">Four ways to train with Joanie in The Villages — start with a free class anytime.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {classes.map(c => (
+          <div class="fade-in-up"><ServiceCard title={c.title} description={c.description} icon={c.icon} /></div>
+        ))}
+      </div>
+      <div class="text-center mt-12 fade-in-up">
+        <a href="/classes" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+          See All Classes &amp; Schedule
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why JoanieFit -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Why JoanieFit</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3">What makes the difference</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {reasons.map(r => (
+          <div class="fade-in-up card-accent bg-white rounded-lg border border-gray-100 p-7">
+            <div class="w-11 h-11 rounded-full bg-brand-primary/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="text-lg text-dark mb-2">{r.title}</h3>
+            <p class="text-[15px] text-dark-light/80 leading-relaxed">{r.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 md:py-28 bg-dark text-white relative overflow-hidden hero-grain">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary-light font-bold uppercase tracking-[0.2em] text-sm">Loved by students</span>
+        <h2 class="text-3xl md:text-4xl text-white mt-3">Why they keep coming back</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-7">
+        {testimonials.map(t => (
+          <div class="fade-in-up bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
+            <svg class="w-9 h-9 text-brand-primary-light mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9.6 8C6.5 8 4 10.5 4 13.6V20h6.4v-6.4H7.2c0-1.8 1.4-3.2 3.2-3.2V8H9.6zm9.6 0c-3.1 0-5.6 2.5-5.6 5.6V20H20v-6.4h-3.2c0-1.8 1.4-3.2 3.2-3.2V8h-.8z"/></svg>
+            <p class="text-lg leading-relaxed text-white/90 mb-6">{t.quote}</p>
+            <div class="font-bold text-brand-primary-light">{t.name}</div>
+            <div class="text-sm text-white/50">{t.role}</div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-12 fade-in-up">
+        <a href="/testimonials" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+          Read More Reviews
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Online / YouTube teaser -->
+  <section class="py-20 md:py-28 bg-light-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="fade-in-up order-2 lg:order-1">
+        <div class="relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-dark">
+          <img src="/images/jf-photo-3.jpg" alt="Joanie leading a class" class="w-full h-full object-cover opacity-80" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="w-20 h-20 rounded-full bg-brand-secondary flex items-center justify-center shadow-lg">
+              <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in-up order-1 lg:order-2">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Can't make it in person?</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-6">Work out with Joanie on YouTube</h2>
+        <p class="text-lg text-dark-light/85 leading-relaxed mb-8">
+          Joanie's <strong>Villages Healthy Living</strong> channel brings her classes to your living
+          room — follow along anytime, at your own pace. Perfect for travel days, rainy mornings,
+          or topping up between classes.
+        </p>
+        <a href="/online-classes" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+          Explore Online Classes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="relative overflow-hidden hero-grain py-20">
+    <div class="absolute inset-0">
+      <img src="/images/jf-photo-3.jpg" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-dark/70"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl text-white mb-5">Your first class is on us</h2>
+      <p class="text-lg text-white/85 mb-9">Come try the free Sawgrass class and see why students have trained with Joanie for years. Just send a quick message to get started.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-lift inline-flex items-center justify-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Claim Your Free Class</a>
+        <a href="/classes" class="btn-lift inline-flex items-center justify-center px-8 py-4 border-2 border-white/40 hover:border-white hover:bg-white/10 text-white text-sm font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">View the Schedule</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

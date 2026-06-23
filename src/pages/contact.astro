@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout title="Contact Joanie">
+  <Hero
+    title="Let's get you moving"
+    subtitle="Questions about classes, the free Sawgrass class, or online workouts? Send Joanie a message — she'd love to hear from you."
+    image="/images/jf-photo-4.jpg"
+    compact={true}
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-14">
+      <!-- Info -->
+      <div class="lg:col-span-2 fade-in-up">
+        <h2 class="text-3xl text-dark mb-6">Reach out anytime</h2>
+        <p class="text-lg text-dark-light/85 leading-relaxed mb-8">
+          JoanieFit is based in The Villages, Florida. Email is the best way to reach us — Joanie
+          personally responds to every message, usually within the hour.
+        </p>
+
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-muted mb-1">Email</div>
+              <a href="mailto:Joanie@JoanieFit.com" class="text-lg text-dark hover:text-brand-primary font-semibold transition-colors">Joanie@JoanieFit.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-muted mb-1">Where</div>
+              <div class="text-lg text-dark font-semibold">The Villages, Florida</div>
+              <div class="text-sm text-dark-light/70">Classes at recreation centers across The Villages</div>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/></svg>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-muted mb-1">Response time</div>
+              <div class="text-lg text-dark font-semibold">Usually within 1 hour</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 p-6 bg-light-bg rounded-2xl">
+          <p class="text-[15px] text-dark-light/80 leading-relaxed">
+            <strong class="text-dark">Looking for class times?</strong> JoanieFit classes are listed
+            on The Villages recreation calendar, where you can also register. Not sure where to
+            start? Just ask — we'll point you to the right class.
+          </p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="lg:col-span-3 fade-in-up">
+        <div class="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 shadow-sm">
+          <h2 class="text-2xl text-dark mb-6">Send a message</h2>
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

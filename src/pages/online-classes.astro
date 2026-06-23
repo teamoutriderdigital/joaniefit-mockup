@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const YT = 'https://www.youtube.com/@VillagesHealthyLiving';
+
+const videos = [
+  { title: 'Low-Impact Cardio Warm-Up', len: '12 min', level: 'All levels' },
+  { title: 'Bodysculpt: Upper Body Strength', len: '25 min', level: 'Beginner+' },
+  { title: 'Coresculpt: Balance & Stability', len: '18 min', level: 'All levels' },
+  { title: 'Standing Kickboxing Combos', len: '20 min', level: 'Intermediate' },
+  { title: 'Gentle Mobility & Stretch', len: '15 min', level: 'All levels' },
+  { title: 'Full-Body Quick Burn', len: '30 min', level: 'All levels' },
+];
+---
+
+<BaseLayout title="Online Classes — Villages Healthy Living">
+  <Hero
+    title="Train with Joanie, anytime"
+    subtitle="Joanie's Villages Healthy Living channel brings her low-impact classes to your living room — free to follow along, at your own pace."
+    image="/images/jf-photo-1.jpg"
+    compact={true}
+    badges={["Free on YouTube", "Follow at your pace", "New videos regularly"]}
+    primaryCta={{ label: "Open the YouTube Channel", href: YT }}
+  />
+
+  <!-- Channel intro -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Villages Healthy Living</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-6">Can't make it to class? Bring Joanie home.</h2>
+        <p class="text-lg text-dark-light/85 leading-relaxed mb-5">
+          Whether you're traveling, the weather's keeping you in, or you just want to move on your
+          own schedule, Joanie's YouTube channel has follow-along workouts for every part of your week.
+        </p>
+        <p class="text-lg text-dark-light/85 leading-relaxed mb-8">
+          Same energy, same expert coaching, same care for active bodies — right on your TV, tablet
+          or phone. Subscribe so you never miss a new video.
+        </p>
+        <a href={YT} target="_blank" rel="noopener" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          Visit the Channel
+        </a>
+      </div>
+      <div class="fade-in-up">
+        <div class="relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-dark">
+          <img src="/images/jf-photo-4.jpg" alt="Joanie leading a workout" class="w-full h-full object-cover opacity-85" />
+          <a href={YT} target="_blank" rel="noopener" class="absolute inset-0 flex items-center justify-center group" aria-label="Open YouTube channel">
+            <span class="w-20 h-20 rounded-full bg-brand-secondary group-hover:scale-110 transition-transform flex items-center justify-center shadow-lg">
+              <svg class="w-9 h-9 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video grid (placeholders linking to channel) -->
+  <section class="py-20 md:py-28 bg-light-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">A taste of the library</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-4">Workouts for every kind of day</h2>
+        <p class="text-lg text-dark-light/80">A sample of what you'll find on the channel — short or long, gentle or sweaty.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        {videos.map(v => (
+          <a href={YT} target="_blank" rel="noopener" class="fade-in-up group block bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <div class="relative aspect-video bg-dark overflow-hidden">
+              <img src="/images/jf-photo-3.jpg" alt="" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500" />
+              <span class="absolute inset-0 flex items-center justify-center">
+                <span class="w-14 h-14 rounded-full bg-brand-secondary flex items-center justify-center shadow-lg">
+                  <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              </span>
+              <span class="absolute bottom-3 right-3 text-xs font-bold text-white bg-black/60 px-2 py-1 rounded">{v.len}</span>
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2">{v.level}</div>
+              <h3 class="text-lg text-dark group-hover:text-brand-primary transition-colors">{v.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-12 fade-in-up">
+        <a href={YT} target="_blank" rel="noopener" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">See Every Video on YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Livegevity teaser -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl bg-dark text-white p-10 md:p-12 text-center relative overflow-hidden hero-grain">
+        <div class="relative z-10">
+          <span class="text-brand-primary-light font-bold uppercase tracking-[0.2em] text-sm">Coming soon</span>
+          <h2 class="text-3xl text-white mt-3 mb-4">More on the way</h2>
+          <p class="text-lg text-white/85 max-w-2xl mx-auto">
+            Joanie is building a full on-demand membership so you can access her complete library of
+            workouts from anywhere. Want to be the first to know when it launches?
+          </p>
+          <a href="/contact" class="btn-lift inline-flex items-center mt-8 px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Join the Waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

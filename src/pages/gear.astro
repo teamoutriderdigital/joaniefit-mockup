@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const items = [
+  { name: 'JoanieFit Tee', desc: 'Soft, breathable cotton-blend tee with the JoanieFit mark. Perfect for class or errands.' },
+  { name: 'Performance Tank', desc: 'Lightweight, moisture-wicking tank that moves with you through kickboxing and Bodysculpt.' },
+  { name: 'Class Tote & Towel', desc: 'Carry your water, mat strap and towel in style — branded essentials for every session.' },
+];
+---
+
+<BaseLayout title="JoanieFit Gear">
+  <Hero
+    title="JoanieFit gear"
+    subtitle="Comfortable, motivating apparel to wear to class and beyond. Tell us what you'd like — we'll let you know the moment it's ready."
+    image="/images/jf-photo-5.jpg"
+    compact={true}
+    badges={["Made for movement", "Limited runs"]}
+  />
+
+  <!-- Product previews -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">The Collection</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-4">Wear your strong</h2>
+        <p class="text-lg text-dark-light/80">A first look at JoanieFit gear. Drop your email below and we'll tell you when each piece is available.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        {items.map(it => (
+          <div class="fade-in-up bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div class="aspect-[4/3] bg-light-bg flex items-center justify-center">
+              <svg class="w-16 h-16 text-brand-primary/40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 4l4 2-2 4-2-1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V9L6 10 4 6l4-2 2 2h4l2-2z"/></svg>
+            </div>
+            <div class="p-7">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xl text-dark">{it.name}</h3>
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-secondary">Coming soon</span>
+              </div>
+              <p class="text-[15px] text-dark-light/80 leading-relaxed">{it.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Notify email form -->
+  <section class="py-16 bg-light-bg">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl border border-gray-100 p-10 shadow-sm text-center">
+        <h2 class="text-3xl text-dark mb-3">Be the first to know</h2>
+        <p class="text-lg text-dark-light/80 mb-8">Leave your email and we'll send a note the moment gear drops. No spam — just gear.</p>
+        <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onsubmit="event.preventDefault()">
+          <label for="gear-email" class="sr-only">Email address</label>
+          <input type="email" id="gear-email" required placeholder="you@email.com" class="flex-1 px-5 py-4 bg-light-bg border-0 rounded-full focus:ring-2 focus:ring-brand-primary/50 outline-none transition text-[15px] placeholder:text-muted" />
+          <button type="submit" class="btn-lift inline-flex items-center justify-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full whitespace-nowrap">Notify Me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

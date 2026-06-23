@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const categories = [
+  {
+    cat: 'Strength & Resistance',
+    picks: [
+      { name: 'Light Dumbbell Set', note: 'Joanie\'s go-to for Bodysculpt at home — a 3 / 5 / 8 lb set covers almost everyone.' },
+      { name: 'Resistance Band Loop Set', note: 'Travel-friendly and gentle on joints. Great for warm-ups and added challenge.' },
+    ],
+  },
+  {
+    cat: 'Recovery & Mobility',
+    picks: [
+      { name: 'Foam Roller', note: 'For easing tight muscles after class and keeping you moving comfortably.' },
+      { name: 'Supportive Mat', note: 'A thicker mat that\'s kind to knees and wrists during core work.' },
+    ],
+  },
+  {
+    cat: 'Everyday Wellness',
+    picks: [
+      { name: 'Insulated Water Bottle', note: 'Stay hydrated through every class — keeps water cold for hours.' },
+      { name: 'Supportive Cross-Trainers', note: 'Joanie\'s pick for stable, cushioned footwear for low-impact classes.' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Picks & Perks">
+  <Hero
+    title="Joanie's picks & perks"
+    subtitle="The gear, tools and little extras Joanie actually uses and recommends — to help you move, recover and feel your best."
+    image="/images/jf-photo-5.jpg"
+    compact={true}
+    badges={["Tried & trusted", "Updated often"]}
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {categories.map(group => (
+        <div class="fade-in-up">
+          <h2 class="text-2xl md:text-3xl text-dark mb-8 flex items-center gap-3">
+            <span class="w-8 h-1 bg-brand-secondary rounded-full"></span>
+            {group.cat}
+          </h2>
+          <div class="grid md:grid-cols-2 gap-7">
+            {group.picks.map(p => (
+              <div class="card-accent bg-white rounded-2xl border border-gray-100 p-7 flex items-start gap-5 shadow-sm hover:shadow-lg transition-all">
+                <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14l-1 12H6L5 8zM9 8V6a3 3 0 016 0v2"/></svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg text-dark mb-2">{p.name}</h3>
+                  <p class="text-[15px] text-dark-light/80 leading-relaxed mb-4">{p.note}</p>
+                  <a href="#" class="inline-flex items-center text-sm font-bold uppercase tracking-wider text-brand-primary hover:text-brand-primary-dark">
+                    View this pick
+                    <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-12 bg-light-bg">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm text-dark-light/70 leading-relaxed">
+        Some links above may be affiliate links, which means JoanieFit may earn a small commission
+        at no extra cost to you. Joanie only recommends products she trusts and uses herself.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const reviews = [
+  { quote: 'Joanie\'s infectious energy and her ability to teach are unmatched. Every class flies by and I leave feeling stronger and happier.', name: 'Amy', role: 'Corporate wellness' },
+  { quote: 'Her classes are a vital stress release for me. I look forward to them all week — they\'ve genuinely changed my routine.', name: 'Kathryn', role: 'Class member' },
+  { quote: 'I love the personalized attention and challenging combinations. Joanie pushes me in exactly the right way.', name: 'Taryn', role: 'Longtime student' },
+  { quote: 'Hands down the hardest, most rewarding classes in the area. You will sweat, and you will smile doing it.', name: 'Verified student', role: 'Group class' },
+  { quote: 'I was nervous about starting fitness at my age. Joanie made me feel welcome from minute one and now I never miss class.', name: 'Pat', role: 'The Villages' },
+  { quote: 'She truly meets you where you are. My balance and strength have improved more than I imagined possible.', name: 'Diane', role: 'Coresculpt regular' },
+];
+---
+
+<BaseLayout title="Reviews & Featured Students">
+  <Hero
+    title="What students say"
+    subtitle="For over 40 years, people have kept coming back to Joanie's classes. Here's why."
+    image="/images/jf-photo-3.jpg"
+    compact={true}
+    badges={["5,000+ students coached", "Active senior favorite"]}
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="columns-1 md:columns-2 lg:columns-3 gap-7 [column-fill:_balance]">
+        {reviews.map(r => (
+          <div class="fade-in-up break-inside-avoid mb-7 bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+            <div class="flex gap-1 mb-4 text-brand-secondary">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.6l1.6-6.7L2.2 8.9l6.9-.6L12 2z"/></svg>
+              ))}
+            </div>
+            <p class="text-[17px] text-dark-light leading-relaxed mb-6">"{r.quote}"</p>
+            <div class="font-bold text-dark">{r.name}</div>
+            <div class="text-sm text-muted">{r.role}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured clients strip -->
+  <section class="py-20 bg-dark text-white relative overflow-hidden hero-grain">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-brand-primary-light font-bold uppercase tracking-[0.2em] text-sm">Featured students</span>
+      <h2 class="text-3xl md:text-4xl text-white mt-3 mb-10">Real people, real momentum</h2>
+      <div class="grid sm:grid-cols-3 gap-7 max-w-4xl mx-auto">
+        {[
+          { stat: '3 yrs', label: 'Pat — never missed a Monday class' },
+          { stat: '−2 sizes', label: 'Diane — stronger and more confident' },
+          { stat: 'Daily', label: 'Kathryn — moves pain-free again' },
+        ].map(f => (
+          <div class="fade-in-up bg-white/5 border border-white/10 rounded-2xl p-8">
+            <div class="text-brand-primary-light font-heading text-3xl mb-2">{f.stat}</div>
+            <div class="text-white/75 text-[15px]">{f.label}</div>
+          </div>
+        ))}
+      </div>
+      <a href="/contact" class="btn-lift inline-flex items-center mt-12 px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Start Your Story — Free Class</a>
+    </div>
+  </section>
+</BaseLayout>

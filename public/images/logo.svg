@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 88" role="img" aria-label="JoanieFit — Fitness for Life">
+  <style>
+    .word { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 800; }
+    .tag  { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 700; letter-spacing: .32em; }
+  </style>
+  <!-- heartbeat mark -->
+  <g transform="translate(6,30)" fill="none" stroke="#FF6A3D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 14 H10 L15 4 L22 24 L28 14 H40"/>
+  </g>
+  <text x="52" y="46" class="word" font-size="42" fill="#FFFFFF">Joanie<tspan fill="#2FC4B8">Fit</tspan></text>
+  <text x="54" y="70" class="tag" font-size="11" fill="#9FC6C1">FITNESS FOR LIFE</text>
+</svg>

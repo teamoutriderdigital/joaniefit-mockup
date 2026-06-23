@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const classes = [
+  {
+    name: 'Low Impact Kickboxing',
+    img: '/images/jf-photo-6.jpg',
+    tag: 'Cardio + Core',
+    blurb: 'Punch, kick and combo your way to better cardio without the joint strain. Joanie keeps the energy high and the movements smart, so you get a real workout that respects your body.',
+    points: ['Heart-pumping combinations', 'Joint-friendly, low-impact footwork', 'Builds coordination & confidence'],
+  },
+  {
+    name: 'Bodysculpt',
+    img: '/images/jf-photo-5.jpg',
+    tag: 'Strength',
+    blurb: 'Light weights, big results. Bodysculpt builds the lean, functional strength that keeps you independent — lifting, carrying, and moving through daily life with ease.',
+    points: ['Full-body resistance training', 'Bone & muscle health', 'Scalable to every ability'],
+  },
+  {
+    name: 'Coresculpt',
+    img: '/images/jf-photo-4.jpg',
+    tag: 'Stability',
+    blurb: 'A strong core protects your back and powers your balance. Coresculpt focuses on the center of everything you do, with controlled movements that build real stability.',
+    points: ['Core & posture focus', 'Better balance & fall prevention', 'Protects your lower back'],
+  },
+];
+---
+
+<BaseLayout title="Classes in The Villages">
+  <Hero
+    title="Classes in The Villages"
+    subtitle="Low-impact, high-energy group fitness designed for active seniors. Find the class that fits you — and start with one for free."
+    image="/images/jf-photo-3.jpg"
+    compact={true}
+    badges={["Low impact", "Small class sizes", "All levels welcome"]}
+    primaryCta={{ label: "Try a Free Class", href: "/contact" }}
+  />
+
+  <!-- Class detail blocks -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      {classes.map((c, i) => (
+        <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-up">
+          <div class:list={[i % 2 === 1 && "lg:order-2"]}>
+            <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
+              <img src={c.img} alt={c.name} class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div class:list={[i % 2 === 1 && "lg:order-1"]}>
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-brand-primary px-3 py-1 rounded-full mb-4">{c.tag}</span>
+            <h2 class="text-3xl md:text-4xl text-dark mb-5">{c.name}</h2>
+            <p class="text-lg text-dark-light/85 leading-relaxed mb-6">{c.blurb}</p>
+            <ul class="space-y-3">
+              {c.points.map(p => (
+                <li class="flex items-start gap-3 text-[17px] text-dark-light">
+                  <svg class="w-6 h-6 text-brand-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Free class callout -->
+  <section class="py-16 bg-light-bg">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl border-2 border-brand-primary/20 p-10 text-center shadow-sm">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-brand-secondary px-4 py-1.5 rounded-full mb-5">Free</span>
+        <h2 class="text-3xl text-dark mb-4">The Free Sawgrass Class</h2>
+        <p class="text-lg text-dark-light/85 max-w-2xl mx-auto mb-8">
+          The best way to meet Joanie is to move with her. Come to a complimentary class at
+          Sawgrass — no commitment, no experience needed. Bring water, wear comfortable shoes,
+          and come as you are.
+        </p>
+        <a href="/contact" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Reserve My Free Class</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to sign up / schedule -->
+  <section class="py-20 md:py-28" id="schedule">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Getting Started</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3">How to find &amp; join a class</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-7">
+        {[
+          { n: '1', t: 'Check The Villages calendar', d: 'JoanieFit classes are listed in The Villages recreation calendars and weekly newspapers. Look for class times at recreation centers near you.' },
+          { n: '2', t: 'Sign up through Recreation', d: 'Class registration and payment are handled by The Villages recreation department — about $48 for a 4-class package.' },
+          { n: '3', t: 'Show up & have fun', d: 'Arrive a few minutes early, bring water, and let Joanie know it\'s your first time. That\'s it — you\'re in!' },
+        ].map(s => (
+          <div class="fade-in-up bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-brand-primary text-white font-heading text-xl flex items-center justify-center mb-5">{s.n}</div>
+            <h3 class="text-xl text-dark mb-3">{s.t}</h3>
+            <p class="text-[15px] text-dark-light/80 leading-relaxed">{s.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12 text-center fade-in-up">
+        <p class="text-dark-light/70 mb-6">Questions about times or which class is right for you?</p>
+        <a href="/contact" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Ask Joanie</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

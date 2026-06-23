@@ -1,0 +1,37 @@
+<!-- Email-only inquiry form — no phone field (per client request) -->
+<form class="space-y-5" onsubmit="event.preventDefault()">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="name" class="block text-xs font-bold uppercase tracking-wider text-dark/70 mb-2">Your Name <span class="text-brand-secondary">*</span></label>
+      <input type="text" id="name" name="name" required class="w-full px-4 py-3.5 bg-light-bg border-0 rounded-lg focus:ring-2 focus:ring-brand-primary/50 outline-none transition text-[15px] placeholder:text-muted" placeholder="Jane Smith" />
+    </div>
+    <div>
+      <label for="email" class="block text-xs font-bold uppercase tracking-wider text-dark/70 mb-2">Email <span class="text-brand-secondary">*</span></label>
+      <input type="email" id="email" name="email" required class="w-full px-4 py-3.5 bg-light-bg border-0 rounded-lg focus:ring-2 focus:ring-brand-primary/50 outline-none transition text-[15px] placeholder:text-muted" placeholder="jane@email.com" />
+    </div>
+  </div>
+
+  <div>
+    <label for="interest" class="block text-xs font-bold uppercase tracking-wider text-dark/70 mb-2">I'm interested in</label>
+    <select id="interest" name="interest" class="w-full px-4 py-3.5 bg-light-bg border-0 rounded-lg focus:ring-2 focus:ring-brand-primary/50 outline-none transition text-[15px] text-dark-light">
+      <option>The free Sawgrass class</option>
+      <option>Low Impact Kickboxing</option>
+      <option>Bodysculpt</option>
+      <option>Coresculpt</option>
+      <option>Online classes</option>
+      <option>Something else</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="details" class="block text-xs font-bold uppercase tracking-wider text-dark/70 mb-2">Your Message</label>
+    <textarea id="details" name="details" rows="4" class="w-full px-4 py-3.5 bg-light-bg border-0 rounded-lg focus:ring-2 focus:ring-brand-primary/50 outline-none transition text-[15px] resize-y placeholder:text-muted" placeholder="Tell Joanie what you're looking for, or ask a question..."></textarea>
+  </div>
+
+  <button type="submit" class="btn-lift w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white font-bold uppercase tracking-wider rounded-full text-sm">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    Send Joanie a Message
+  </button>
+
+  <p class="text-xs text-muted">Joanie replies to all messages by email, usually within an hour.</p>
+</form>
