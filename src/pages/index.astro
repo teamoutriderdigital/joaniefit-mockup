@@ -5,6 +5,13 @@ import ServiceCard from '../components/ServiceCard.astro';
 
 const YOUTUBE = 'https://www.youtube.com/@VillagesHealthyLiving';
 
+// Rotating hero — high-res photos of Joanie's classes in The Villages
+const heroImages = [
+  '/images/hero-pano.jpg',
+  '/images/villages-sawgrass-group.jpg',
+  '/images/joanie-class.jpg',
+  '/images/villages-members.jpg',
+];
 const heroBadges = ['The Villages, FL', 'Active senior fitness', 'All levels welcome'];
 
 const classes = [
@@ -45,14 +52,20 @@ const testimonials = [
 ---
 
 <BaseLayout title="Active Senior Fitness in The Villages, FL">
-  <!-- Branded hero (photo-free) -->
-  <section class="relative overflow-hidden hero-grain py-14 md:py-20 lg:py-24">
-    <div class="absolute inset-0 hero-brand-bg"></div>
-    <div class="absolute -top-24 -right-16 w-[42rem] h-[42rem] rounded-full bg-brand-primary-light/20 blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 -left-24 w-[40rem] h-[40rem] rounded-full bg-brand-secondary/15 blur-3xl pointer-events-none"></div>
-    <svg class="absolute bottom-0 left-0 w-full h-48 opacity-[0.12] pointer-events-none" viewBox="0 0 1200 160" preserveAspectRatio="none" fill="none" aria-hidden="true">
-      <path d="M0 120 H340 L380 50 L440 145 L500 15 L560 120 H1200" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+  <!-- Rotating hi-res photo hero -->
+  <section class="relative overflow-hidden hero-grain py-24 md:py-32 lg:py-40">
+    <div class="absolute inset-0">
+      {heroImages.map((src, i) => (
+        <img
+          src={src}
+          alt=""
+          data-hero-slide
+          class:list={["absolute inset-0 w-full h-full object-cover transition-opacity duration-1000", i === 0 ? "opacity-100" : "opacity-0"]}
+          loading={i === 0 ? "eager" : "lazy"}
+        />
+      ))}
+      <div class="absolute inset-0 bg-gradient-to-br from-dark/85 via-dark/70 to-dark/55"></div>
+    </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
@@ -62,7 +75,7 @@ const testimonials = [
         <h1 class="font-heading leading-tight text-4xl md:text-5xl lg:text-6xl" style="color:#fff;">
           Strength, mobility &amp; durability — for this phase of life.
         </h1>
-        <p class="text-white/80 mt-5 leading-relaxed text-lg md:text-xl max-w-2xl">
+        <p class="text-white/85 mt-5 leading-relaxed text-lg md:text-xl max-w-2xl">
           Joanie has been teaching fitness since 1982. Join her low-impact classes in The Villages
           and discover just how much your body is still capable of.
         </p>
@@ -89,6 +102,19 @@ const testimonials = [
     </div>
   </section>
 
+  <script>
+    (() => {
+      const slides = Array.from(document.querySelectorAll('[data-hero-slide]'));
+      if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let idx = 0;
+      setInterval(() => {
+        slides[idx].classList.replace('opacity-100', 'opacity-0');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.replace('opacity-0', 'opacity-100');
+      }, 5000);
+    })();
+  </script>
+
   <StatBar />
 
   <!-- Intro -->
@@ -113,7 +139,7 @@ const testimonials = [
       </div>
       <div class="fade-in-up">
         <div class="relative rounded-2xl overflow-hidden shadow-xl">
-          <img src="/images/jf-photo-4.jpg" alt="Joanie leading an energetic group fitness class" class="w-full h-full object-cover" />
+          <img src="/images/joanie-class.jpg" alt="Joanie with her group fitness class in The Villages" class="w-full h-full object-cover" />
         </div>
       </div>
     </div>
@@ -191,7 +217,7 @@ const testimonials = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
       <div class="fade-in-up order-2 lg:order-1">
         <a href={YOUTUBE} target="_blank" rel="noopener" class="group block relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-dark" aria-label="Open Joanie's YouTube channel">
-          <img src="/images/joanie-leading.jpg" alt="Joanie leading a class" class="w-full h-full object-cover opacity-80 group-hover:opacity-95 transition-opacity" />
+          <img src="/images/villages-barre.jpg" alt="Joanie leading a class" class="w-full h-full object-cover opacity-80 group-hover:opacity-95 transition-opacity" />
           <div class="absolute inset-0 flex items-center justify-center">
             <span class="w-20 h-20 rounded-full bg-brand-secondary group-hover:scale-110 transition-transform flex items-center justify-center shadow-lg">
               <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>

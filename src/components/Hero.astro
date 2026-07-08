@@ -9,17 +9,26 @@ interface Props {
   badges?: string[];
 }
 
-const { title, subtitle, compact = false, primaryCta, secondaryCta, badges } = Astro.props;
+const { title, subtitle, image, compact = false, primaryCta, secondaryCta, badges } = Astro.props;
 ---
 
 <section class:list={["relative overflow-hidden hero-grain hero-brand", compact ? "py-14 md:py-20" : "py-16 md:py-24 lg:py-28"]}>
-  <!-- Branded gradient + decorative motif (no photo) -->
-  <div class="absolute inset-0 hero-brand-bg"></div>
-  <div class="absolute -top-24 -right-16 w-[36rem] h-[36rem] rounded-full bg-brand-primary-light/20 blur-3xl pointer-events-none"></div>
-  <div class="absolute -bottom-32 -left-24 w-[34rem] h-[34rem] rounded-full bg-brand-secondary/15 blur-3xl pointer-events-none"></div>
-  <svg class="absolute bottom-0 left-0 w-full h-40 opacity-[0.12] pointer-events-none" viewBox="0 0 1200 160" preserveAspectRatio="none" fill="none" aria-hidden="true">
-    <path d="M0 120 H360 L400 60 L460 140 L520 20 L580 120 H1200" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+  {image ? (
+    <div class="absolute inset-0">
+      <img src={image} alt="" class="w-full h-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-br from-dark/85 via-dark/70 to-dark/55"></div>
+    </div>
+  ) : (
+    <>
+      <!-- Branded gradient + decorative motif (no photo) -->
+      <div class="absolute inset-0 hero-brand-bg"></div>
+      <div class="absolute -top-24 -right-16 w-[36rem] h-[36rem] rounded-full bg-brand-primary-light/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-24 w-[34rem] h-[34rem] rounded-full bg-brand-secondary/15 blur-3xl pointer-events-none"></div>
+      <svg class="absolute bottom-0 left-0 w-full h-40 opacity-[0.12] pointer-events-none" viewBox="0 0 1200 160" preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <path d="M0 120 H360 L400 60 L460 140 L520 20 L580 120 H1200" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </>
+  )}
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class:list={[compact ? "max-w-3xl mx-auto text-center" : "max-w-3xl"]}>
