@@ -57,6 +57,13 @@ html.js .fade-in-up.visible {
 .fade-in-up:nth-child(5) { transition-delay: 0.32s; }
 .fade-in-up:nth-child(6) { transition-delay: 0.40s; }
 
+/* Branded (photo-free) hero background */
+.hero-brand-bg {
+  background:
+    radial-gradient(120% 120% at 85% 0%, rgba(47,196,184,0.28) 0%, rgba(47,196,184,0) 45%),
+    linear-gradient(135deg, #06302D 0%, #0A5F58 55%, #0E857B 100%);
+}
+
 /* Hero grain texture */
 .hero-grain::after {
   content: '';
