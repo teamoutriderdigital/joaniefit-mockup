@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const SAWGRASS_MAP = 'https://www.google.com/maps/search/?api=1&query=Sawgrass+Grove+766+Marilee+Place+The+Villages+FL+34785';
+
+const schedule = [
+  { season: 'Summer', dates: 'June 1 – September 30', time: 'Wednesdays · 9:00 – 10:00 AM' },
+  { season: 'Winter', dates: 'October 1 – May 31', time: 'Wednesdays · 10:00 – 11:00 AM' },
+];
+---
+
+<BaseLayout title="Take a Free Class at Sawgrass">
+  <Hero
+    title="Take a free class at Sawgrass"
+    subtitle="Joanie's Wednesday class at Sawgrass is free to everyone, every week. No sign-up, no fee — just show up and move."
+    image="/images/villages-sawgrass.jpg"
+    compact={true}
+    badges={["Free for everyone", "Every Wednesday", "The Villages, FL"]}
+    primaryCta={{ label: "Get Directions", href: SAWGRASS_MAP }}
+  />
+
+  <!-- Schedule -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">When to come</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-4">The weekly Sawgrass class</h2>
+        <p class="text-lg text-dark-light/80">The class time shifts a little with the seasons — here's when to find Joanie at Sawgrass.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-7">
+        {schedule.map(s => (
+          <div class="fade-in-up card-accent bg-white rounded-2xl border border-gray-100 p-8 shadow-sm text-center">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-brand-primary px-3 py-1 rounded-full mb-5">{s.season}</span>
+            <div class="text-2xl md:text-3xl font-heading text-dark mb-2">{s.time}</div>
+            <div class="text-dark-light/70 text-[15px]">{s.dates}</div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-dark-light/70 mt-8 fade-in-up">
+        Free to everyone, all year round. Bring water, comfortable shoes, and a friend if you like.
+      </p>
+    </div>
+  </section>
+
+  <!-- Location + map -->
+  <section class="py-16 bg-light-bg">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden grid md:grid-cols-2">
+        <div class="aspect-[4/3] md:aspect-auto">
+          <img src="/images/villages-group.jpg" alt="Joanie's class gathered at Sawgrass Grove" class="w-full h-full object-cover" />
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Where</span>
+          <h2 class="text-3xl text-dark mt-3 mb-4">Sawgrass Grove</h2>
+          <p class="text-lg text-dark-light/85 leading-relaxed mb-2">766 Marilee Place</p>
+          <p class="text-lg text-dark-light/85 leading-relaxed mb-8">The Villages, FL 34785</p>
+          <a href={SAWGRASS_MAP} target="_blank" rel="noopener" class="btn-lift inline-flex items-center self-start px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Open in Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 fade-in-up">
+        <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">First time?</span>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3">Here's what to expect</h2>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-7">
+        {[
+          { t: 'Everyone is welcome', d: 'All ages and abilities. Joanie offers modifications so you can work at the level that\'s right for you.' },
+          { t: 'Low impact, high energy', d: 'A joint-friendly, full-of-fun workout that will leave you feeling strong and accomplished.' },
+          { t: 'No commitment', d: 'It\'s genuinely free — come once, come every week. No registration and nothing to buy.' },
+        ].map(x => (
+          <div class="fade-in-up bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+            <div class="w-11 h-11 rounded-full bg-brand-primary/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="text-xl text-dark mb-3">{x.t}</h3>
+            <p class="text-[15px] text-dark-light/80 leading-relaxed">{x.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-12 fade-in-up">
+        <a href="/classes" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">See All of Joanie's Classes</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

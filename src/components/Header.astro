@@ -4,10 +4,13 @@ interface Props {
 }
 const { currentPath } = Astro.props;
 
+// NOTE: "Online Classes" links straight to the YouTube channel for now.
+// When Livegevity launches, swap this one href for the Livegevity URL.
+const ONLINE_CLASSES_URL = 'https://www.youtube.com/@VillagesHealthyLiving';
+
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/classes', label: 'Classes' },
-  { href: '/online-classes', label: 'Online' },
+  { href: ONLINE_CLASSES_URL, label: 'Online Classes', external: true },
+  { href: '/classes', label: 'Classes in The Villages' },
   { href: '/gear', label: 'Gear' },
   { href: '/picks-perks', label: 'Picks' },
   { href: '/story', label: 'Story' },
@@ -23,12 +26,14 @@ const navLinks = [
         <img src="/images/logo.svg" alt="JoanieFit — Fitness for Life" class="h-12 w-auto" />
       </a>
 
-      <nav class="hidden lg:flex items-center gap-6">
+      <nav class="hidden xl:flex items-center gap-5">
         {navLinks.map(link => (
           <a
             href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener" : undefined}
             class:list={[
-              "relative text-[13px] font-bold uppercase tracking-wider transition-colors duration-200 py-1",
+              "relative text-[12px] font-bold uppercase tracking-wide transition-colors duration-200 py-1 whitespace-nowrap",
               currentPath === link.href ? "text-brand-primary-light" : "text-white/90 hover:text-brand-primary-light"
             ]}
           >
@@ -38,12 +43,12 @@ const navLinks = [
             )}
           </a>
         ))}
-        <a href="/contact" class="btn-lift ml-2 inline-flex items-center px-6 py-2.5 bg-brand-primary hover:bg-brand-primary-dark text-white text-xs font-bold uppercase tracking-widest rounded-full">
+        <a href="/contact" class="btn-lift ml-1 inline-flex items-center px-6 py-2.5 bg-brand-primary hover:bg-brand-primary-dark text-white text-xs font-bold uppercase tracking-widest rounded-full">
           Contact
         </a>
       </nav>
 
-      <button id="mobile-menu-btn" class="lg:hidden text-white p-2 relative z-50" aria-label="Toggle navigation menu">
+      <button id="mobile-menu-btn" class="xl:hidden text-white p-2 relative z-50" aria-label="Toggle navigation menu">
         <svg id="hamburger-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -54,10 +59,10 @@ const navLinks = [
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden lg:hidden bg-dark border-t border-white/10">
+  <div id="mobile-menu" class="hidden xl:hidden bg-dark border-t border-white/10">
     <div class="px-6 py-6 space-y-1">
       {navLinks.map(link => (
-        <a href={link.href} class:list={["block text-lg font-bold uppercase tracking-wider py-3 border-b border-white/5", currentPath === link.href ? "text-brand-primary-light" : "text-white/80 hover:text-brand-primary-light"]}>
+        <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener" : undefined} class:list={["block text-lg font-bold uppercase tracking-wider py-3 border-b border-white/5", currentPath === link.href ? "text-brand-primary-light" : "text-white/80 hover:text-brand-primary-light"]}>
           {link.label}
         </a>
       ))}

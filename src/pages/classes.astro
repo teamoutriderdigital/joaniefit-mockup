@@ -5,7 +5,7 @@ import Hero from '../components/Hero.astro';
 const classes = [
   {
     name: 'Low Impact Kickboxing',
-    img: '/images/jf-photo-6.jpg',
+    img: '/images/villages-kickboxing.jpg',
     tag: 'Cardio + Core',
     blurb: 'Punch, kick and combo your way to better cardio without the joint strain. Joanie keeps the energy high and the movements smart, so you get a real workout that respects your body.',
     points: ['Heart-pumping combinations', 'Joint-friendly, low-impact footwork', 'Builds coordination & confidence'],
@@ -19,7 +19,7 @@ const classes = [
   },
   {
     name: 'Coresculpt',
-    img: '/images/jf-photo-4.jpg',
+    img: '/images/villages-waterfront.jpg',
     tag: 'Stability',
     blurb: 'A strong core protects your back and powers your balance. Coresculpt focuses on the center of everything you do, with controlled movements that build real stability.',
     points: ['Core & posture focus', 'Better balance & fall prevention', 'Protects your lower back'],
@@ -31,10 +31,10 @@ const classes = [
   <Hero
     title="Classes in The Villages"
     subtitle="Low-impact, high-energy group fitness designed for active seniors. Find the class that fits you — and start with one for free."
-    image="/images/jf-photo-3.jpg"
+    image="/images/villages-sawgrass.jpg"
     compact={true}
     badges={["Low impact", "Small class sizes", "All levels welcome"]}
-    primaryCta={{ label: "Try a Free Class", href: "/contact" }}
+    primaryCta={{ label: "Take a Free Class", href: "/free-class" }}
   />
 
   <!-- Class detail blocks -->
@@ -69,14 +69,14 @@ const classes = [
   <section class="py-16 bg-light-bg">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-white rounded-2xl border-2 border-brand-primary/20 p-10 text-center shadow-sm">
-        <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-brand-secondary px-4 py-1.5 rounded-full mb-5">Free</span>
-        <h2 class="text-3xl text-dark mb-4">The Free Sawgrass Class</h2>
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-white bg-brand-secondary px-4 py-1.5 rounded-full mb-5">Free for Everyone</span>
+        <h2 class="text-3xl text-dark mb-4">The Free Class at Sawgrass</h2>
         <p class="text-lg text-dark-light/85 max-w-2xl mx-auto mb-8">
-          The best way to meet Joanie is to move with her. Come to a complimentary class at
-          Sawgrass — no commitment, no experience needed. Bring water, wear comfortable shoes,
+          The best way to meet Joanie is to move with her. Her Wednesday class at Sawgrass is
+          free to everyone, every week — no sign-up, no fee. Bring water, wear comfortable shoes,
           and come as you are.
         </p>
-        <a href="/contact" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Reserve My Free Class</a>
+        <a href="/free-class" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">See the Free Class Details</a>
       </div>
     </div>
   </section>
@@ -90,14 +90,20 @@ const classes = [
       </div>
       <div class="grid md:grid-cols-3 gap-7">
         {[
-          { n: '1', t: 'Check The Villages calendar', d: 'JoanieFit classes are listed in The Villages recreation calendars and weekly newspapers. Look for class times at recreation centers near you.' },
-          { n: '2', t: 'Sign up through Recreation', d: 'Class registration and payment are handled by The Villages recreation department — about $48 for a 4-class package.' },
+          { n: '1', t: 'Find the class in the catalog', d: 'JoanieFit classes are listed in the Enrichment Academy catalog. Browse the catalog to see current class days, times and locations.' },
+          { n: '2', t: 'Register with the Enrichment Academy', d: 'Class registration is handled through The Villages Enrichment Academy. Visit their site to register and see current pricing.', link: { label: 'Visit the Enrichment Academy', href: 'https://www.theenrichmentacademy.org/' } },
           { n: '3', t: 'Show up & have fun', d: 'Arrive a few minutes early, bring water, and let Joanie know it\'s your first time. That\'s it — you\'re in!' },
         ].map(s => (
           <div class="fade-in-up bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
             <div class="w-12 h-12 rounded-full bg-brand-primary text-white font-heading text-xl flex items-center justify-center mb-5">{s.n}</div>
             <h3 class="text-xl text-dark mb-3">{s.t}</h3>
             <p class="text-[15px] text-dark-light/80 leading-relaxed">{s.d}</p>
+            {s.link && (
+              <a href={s.link.href} target="_blank" rel="noopener" class="inline-flex items-center mt-4 text-sm font-bold uppercase tracking-wider text-brand-primary hover:text-brand-primary-dark">
+                {s.link.label}
+                <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+            )}
           </div>
         ))}
       </div>

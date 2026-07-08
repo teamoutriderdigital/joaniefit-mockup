@@ -3,14 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 
 const faqs = [
-  { q: 'When is your free class?', a: 'Joanie offers a complimentary class at Sawgrass for newcomers. Times vary by season — send a quick message and we\'ll tell you the next available free class and how to join.' },
-  { q: 'How do I sign up for your classes?', a: 'JoanieFit classes are run through The Villages recreation department. You\'ll find them in The Villages calendars and weekly newspapers, and you register and pay through Recreation — about $48 for a 4-class package.' },
-  { q: 'Do you have online classes?', a: 'Yes! Joanie\'s Villages Healthy Living channel on YouTube has follow-along workouts you can do anytime, anywhere — completely free to watch. A full on-demand membership is also on the way.' },
-  { q: 'Are the classes really low impact?', a: 'Absolutely. Every class — including kickboxing — is designed to be joint-friendly and scalable. Joanie offers modifications so you can work at the level that\'s right for you.' },
+  { q: 'When is your free class?', a: 'Joanie\'s class at Sawgrass is free to everyone, every Wednesday. From June 1 to September 30 it runs 9:00–10:00 AM, and from October 1 to May 31 it runs 10:00–11:00 AM. No sign-up needed — just show up.', link: { label: 'Free class details & map', href: '/free-class' } },
+  { q: 'How do I sign up for your classes?', a: 'JoanieFit classes are offered through The Villages Enrichment Academy. You\'ll find them in the Enrichment Academy catalog, and you register through the Academy — visit their site for the current catalog and pricing details.', link: { label: 'Visit the Enrichment Academy', href: 'https://www.theenrichmentacademy.org/', external: true } },
+  { q: 'Do you have online classes?', a: 'Yes! Joanie\'s Villages Healthy Living channel on YouTube has one class you can watch free. The rest of her online classes are available by joining the channel through membership, so you can follow along anytime, anywhere. A full on-demand membership site is also on the way.', link: { label: 'Watch on YouTube', href: 'https://www.youtube.com/@VillagesHealthyLiving', external: true } },
+  { q: 'Are the classes really low impact?', a: 'Absolutely. Every class — including kickboxing — is designed to be joint-friendly and scalable. Our bodies are capable of so much more than you know sometimes; Joanie helps you explore your potential while keeping the workout safe and effective.' },
   { q: 'I haven\'t exercised in a while. Can I still join?', a: 'Yes, and you\'re exactly who Joanie loves to coach. Classes welcome all levels, and she\'ll meet you where you are. Most students say they wish they\'d started sooner.' },
   { q: 'What should I bring to class?', a: 'Just water, comfortable workout shoes and clothes you can move in. For some classes light weights are used — Joanie will let you know what to expect.' },
-  { q: 'Where are classes held?', a: 'At recreation centers around The Villages, FL. Specific locations are listed with each class on The Villages recreation calendar.' },
-  { q: 'How do I reach Joanie?', a: 'The easiest way is email — Joanie@JoanieFit.com — or the contact form on this site. She replies to messages quickly, usually within an hour.' },
+  { q: 'Where are classes held?', a: 'At locations around The Villages, FL. Specific days, times and locations for each class are listed in the Enrichment Academy catalog.' },
+  { q: 'How do I reach Joanie?', a: 'The easiest way is email — Joanie@JoanieFit.com — or the contact form on this site. Joanie replies to every message personally.' },
 ];
 ---
 
@@ -31,7 +31,15 @@ const faqs = [
               {f.q}
               <svg class="w-6 h-6 text-brand-primary flex-shrink-0 ml-4 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
             </summary>
-            <div class="px-7 pb-7 -mt-1 text-[17px] text-dark-light/85 leading-relaxed">{f.a}</div>
+            <div class="px-7 pb-7 -mt-1 text-[17px] text-dark-light/85 leading-relaxed">
+              {f.a}
+              {f.link && (
+                <a href={f.link.href} target={f.link.external ? "_blank" : undefined} rel={f.link.external ? "noopener" : undefined} class="inline-flex items-center mt-4 text-sm font-bold uppercase tracking-wider text-brand-primary hover:text-brand-primary-dark">
+                  {f.link.label}
+                  <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              )}
+            </div>
           </details>
         ))}
       </div>

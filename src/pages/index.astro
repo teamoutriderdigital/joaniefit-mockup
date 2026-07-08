@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
 import StatBar from '../components/StatBar.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+
+const YOUTUBE = 'https://www.youtube.com/@VillagesHealthyLiving';
+
+// Rotating hero — Joanie teaching classes to seniors in The Villages
+const heroImages = [
+  '/images/joanie-leading.jpg',
+  '/images/villages-sawgrass.jpg',
+  '/images/villages-kickboxing.jpg',
+  '/images/villages-waterfront.jpg',
+];
+const heroBadges = ['The Villages, FL', 'Active senior fitness', 'All levels welcome'];
 
 const classes = [
   {
@@ -21,8 +31,8 @@ const classes = [
     icon: '<svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18"/></svg>',
   },
   {
-    title: 'Free Sawgrass Class',
-    description: 'New to JoanieFit? Come try a complimentary class at Sawgrass — no commitment, just bring water and a smile.',
+    title: 'Free Class at Sawgrass',
+    description: 'Joanie\'s Wednesday class at Sawgrass is free to everyone, every week — no commitment, just bring water and a smile.',
     icon: '<svg class="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>',
   },
 ];
@@ -42,14 +52,65 @@ const testimonials = [
 ---
 
 <BaseLayout title="Active Senior Fitness in The Villages, FL">
-  <Hero
-    title="Strength, mobility & durability — for this phase of life."
-    subtitle="Joanie has been teaching fitness since 1982. Join her low-impact classes in The Villages and discover just how much your body is still capable of."
-    image="/images/jf-photo-1.jpg"
-    badges={["The Villages, FL", "Active senior fitness", "Limited class sizes"]}
-    primaryCta={{ label: "See the Class Schedule", href: "/classes" }}
-    secondaryCta={{ label: "Watch on YouTube", href: "/online-classes" }}
-  />
+  <!-- Rotating hero -->
+  <section class="relative overflow-hidden hero-grain py-28 md:py-40 lg:py-48">
+    <div class="absolute inset-0" id="hero-rotator">
+      {heroImages.map((src, i) => (
+        <img
+          src={src}
+          alt=""
+          data-hero-slide
+          class:list={["absolute inset-0 w-full h-full object-cover transition-opacity duration-1000", i === 0 ? "opacity-100" : "opacity-0"]}
+          loading={i === 0 ? "eager" : "lazy"}
+        />
+      ))}
+      <div class="absolute inset-0 bg-gradient-to-br from-dark/85 via-dark/70 to-dark/55"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading leading-tight text-4xl md:text-5xl lg:text-6xl" style="color:#fff;">
+          Strength, mobility &amp; durability — for this phase of life.
+        </h1>
+        <p class="text-gray-200 mt-5 leading-relaxed text-lg md:text-xl max-w-2xl">
+          Joanie has been teaching fitness since 1982. Join her low-impact classes in The Villages
+          and discover just how much your body is still capable of.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mt-6">
+          {heroBadges.map(badge => (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-white/10 text-white/90 border border-white/15 backdrop-blur-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-primary-light"></span>
+              {badge}
+            </span>
+          ))}
+        </div>
+
+        <div class="mt-9 flex flex-col sm:flex-row gap-4 items-start">
+          <a href="/free-class" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+            Take a Free Class
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href={YOUTUBE} target="_blank" rel="noopener" class="btn-lift inline-flex items-center px-8 py-4 border-2 border-white/40 hover:border-white hover:bg-white/10 text-white text-sm font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">
+            Work Out Online
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const slides = Array.from(document.querySelectorAll('[data-hero-slide]'));
+      if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let idx = 0;
+      setInterval(() => {
+        slides[idx].classList.replace('opacity-100', 'opacity-0');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.replace('opacity-0', 'opacity-100');
+      }, 5000);
+    })();
+  </script>
 
   <StatBar />
 
@@ -152,25 +213,25 @@ const testimonials = [
   <section class="py-20 md:py-28 bg-light-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
       <div class="fade-in-up order-2 lg:order-1">
-        <div class="relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-dark">
-          <img src="/images/jf-photo-3.jpg" alt="Joanie leading a class" class="w-full h-full object-cover opacity-80" />
+        <a href={YOUTUBE} target="_blank" rel="noopener" class="group block relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-dark" aria-label="Open Joanie's YouTube channel">
+          <img src="/images/joanie-leading.jpg" alt="Joanie leading a class" class="w-full h-full object-cover opacity-80 group-hover:opacity-95 transition-opacity" />
           <div class="absolute inset-0 flex items-center justify-center">
-            <span class="w-20 h-20 rounded-full bg-brand-secondary flex items-center justify-center shadow-lg">
+            <span class="w-20 h-20 rounded-full bg-brand-secondary group-hover:scale-110 transition-transform flex items-center justify-center shadow-lg">
               <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </span>
           </div>
-        </div>
+        </a>
       </div>
       <div class="fade-in-up order-1 lg:order-2">
         <span class="text-brand-primary font-bold uppercase tracking-[0.2em] text-sm">Can't make it in person?</span>
-        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-6">Work out with Joanie on YouTube</h2>
+        <h2 class="text-3xl md:text-4xl text-dark mt-3 mb-6">Work out with Joanie online</h2>
         <p class="text-lg text-dark-light/85 leading-relaxed mb-8">
           Joanie's <strong>Villages Healthy Living</strong> channel brings her classes to your living
-          room — follow along anytime, at your own pace. Perfect for travel days, rainy mornings,
-          or topping up between classes.
+          room. Your first class is free — then join through membership to unlock the full library
+          and follow along anytime, at your own pace.
         </p>
-        <a href="/online-classes" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
-          Explore Online Classes
+        <a href={YOUTUBE} target="_blank" rel="noopener" class="btn-lift inline-flex items-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">
+          Work Out Online
         </a>
       </div>
     </div>
@@ -183,11 +244,11 @@ const testimonials = [
       <div class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-dark/70"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl text-white mb-5">Your first class is on us</h2>
-      <p class="text-lg text-white/85 mb-9">Come try the free Sawgrass class and see why students have trained with Joanie for years. Just send a quick message to get started.</p>
+      <h2 class="text-3xl md:text-4xl text-white mb-5">Your first class is on us — every week</h2>
+      <p class="text-lg text-white/85 mb-9">Joanie's Wednesday class at Sawgrass is free to everyone. Come see why students have trained with her for years.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="btn-lift inline-flex items-center justify-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Claim Your Free Class</a>
-        <a href="/classes" class="btn-lift inline-flex items-center justify-center px-8 py-4 border-2 border-white/40 hover:border-white hover:bg-white/10 text-white text-sm font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">View the Schedule</a>
+        <a href="/free-class" class="btn-lift inline-flex items-center justify-center px-8 py-4 bg-brand-primary hover:bg-brand-primary-dark text-white text-sm font-bold uppercase tracking-wider rounded-full">Take a Free Class</a>
+        <a href="/classes" class="btn-lift inline-flex items-center justify-center px-8 py-4 border-2 border-white/40 hover:border-white hover:bg-white/10 text-white text-sm font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">See All Classes</a>
       </div>
     </div>
   </section>
